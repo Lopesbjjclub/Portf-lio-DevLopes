@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Dev Front-end</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #ff00ff;
+            --neon-pink: #ff2d87;
+            --bg-color: #050d2c;
+            --bg-gradient: linear-gradient(135deg, #050d2c 0%, #0a1945 100%);
+            --card-bg: rgba(10, 25, 69, 0.5);
+            --text-color: #fff;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Efeito Neon Text */
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue),
+                         0 0 10px var(--neon-blue),
+                         0 0 20px var(--neon-blue);
+        }
+
+        .neon-text-purple {
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px var(--neon-purple),
+                         0 0 10px var(--neon-purple),
+                         0 0 20px var(--neon-purple);
+        }
+
+        /* Header e Navegação */
+        header {
+            background: rgba(5, 13, 44, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-blue);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue),
+                         0 0 10px var(--neon-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--neon-blue);
+            font-weight: 500;
+            transition: text-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a:hover {
+            text-shadow: 0 0 5px var(--neon-blue),
+                         0 0 10px var(--neon-blue),
+                         0 0 20px var(--neon-blue);
+        }
+
+        /* Seções principais */
+        section {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .highlight {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink),
+                         0 0 10px var(--neon-pink);
+        }
+
+        /* Sobre Section */
+        #sobre {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            backdrop-filter: blur(10px);
+            margin-top: 4rem;
+        }
+
+        /* Projetos Section */
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .projeto-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--neon-purple);
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .projeto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+        }
+
+        .projeto-img {
+            width: 100%;
+            height: 200px;
+            border-bottom: 1px solid var(--neon-purple);
+        }
+
+        .projeto-info {
+            padding: 1.5rem;
+        }
+
+        /* Contato Section */
+        #contato {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            backdrop-filter: blur(10px);
+            margin-top: 4rem;
+        }
+
+        .contato-form {
+            display: grid;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(5, 13, 44, 0.8);
+            border: 1px solid var(--neon-blue);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        button {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: var(--neon-blue);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(5, 13, 44, 0.8);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--neon-blue);
+        }
+
+        .descricao{
+font-size: 24px;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+color: red;
+
+        }
+
+        .descricao1{
+            font-size: 24px;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+color: red;
+
+        }
+
+
+        .descricao2{
+
+            font-size: 24px;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+color: red;
+        }
+
+        .img1{
+            height: 100%;
+            width: 100%;
+        }
+
+        .img2{
+            height: 100%;
+            width: 100%;
+        }
+
+        .img3{
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            #home {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                padding-right: 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Dev lopes Portfólio </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1>Olá, eu sou Desenvolvedor Front-end></h1>
+            <p class="neon-text">Transformando ideias em experiências digitais incríveis através de código limpo e
+                design responsivo.</p>
+            <button onclick="location.href='#projetos'">Ver Projetos</button>
+        </div>
+        <div class="hero-image">
+            <img src="img/devlopes.jpg" alt="Desenvolvedor">
+        </div>
+    </section>
+
+    <section id="sobre">
+        <h2 class="neon-text">Sobre Mim</h2>
+        <p>Sou um desenvolvedor Front-end apaixonado por criar interfaces modernas e intuitivas. Com experiência em
+            HTML, CSS, JavaScript e frameworks modernos, busco sempre as melhores práticas e tecnologias mais recentes
+            para desenvolver soluções web de alta qualidade.</p>
+        <div class="skills">
+            <h3 class="neon-text-purple">Minhas Habilidades:</h3>
+            <ul>
+                <li>HTML5 & CSS3</li>
+                <li>JavaScript (ES6+)</li>
+                <li>React.js</li>
+                <li>Responsive Design</li>
+                <li>Git & GitHub</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <h2 class="neon-text">Meus Projetos</h2>
+        <div class="projetos-grid">
+            <div class="projeto-card">
+                <div class="projeto-img">
+                    <img src="img/jiu.jpeg" class="img1" alt="Projeto 1">
+                </div>
+                <div class="projeto-info">
+                    <h3 class="neon-text">Projeto 1</h3>
+                    <p class="descricao"> Site Arena Jiu-jitsu</p>
+                    <a href="https://arenajiujitsuoficial.netlify.app/"><button>Ver Projeto</button></a>
+                </div>
+            </div>
+            <div class="projeto-card">
+                <div class="projeto-img">
+                    <img src="img/cubo negro.jpg" class="img2" alt="Projeto 2">
+                </div>
+                <div class="projeto-info">
+                    <h3 class="neon-text">Projeto 2</h3>
+                    <p class="descricao1">Calculadora de cubagem</p>
+                    <a href="https://cubagemlopes.netlify.app/"><button>Ver Projeto</button></a>
+                </div>
+            </div>
+            <div class="projeto-card">
+                <div class="projeto-img">
+                    <img src="img/lista negra.jpg" class="img3" alt="Projeto 3">
+                </div>
+                <div class="projeto-info">
+                    <h3 class="neon-text">Projeto 3</h3>
+                    <p class="descricao2">Lista de tarefas   </p>
+                    <a href="https://listadetarefasbyjonathaslopes.netlify.app/"><button>Ver Projeto</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section section id="contato">
+        <a href="https://www.linkedin.com/in/jonathas-lopes-de-sá-36ab2a97"><button>Linkedin</button></a>
+        <a href="https://api.whatsapp.com/send?phone=+5562982344373&text=Falar+com+irm%C3%A3os+M%C3%A1rio%21%21%21%21"><button>WhatsApp</button></a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Dev Lopes; Jonatha Lopes. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>
